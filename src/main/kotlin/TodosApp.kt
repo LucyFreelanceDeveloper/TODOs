@@ -9,7 +9,7 @@ import kotlin.system.exitProcess
 
 
 class TodosApp {
-    val TASK_FILE_PATH = "tasks.json"
+    val TASK_FILE_PATH = "src/main/resources/tasks.json"
 
     private val scanner: Scanner = Scanner(System.`in`)
 
@@ -56,13 +56,17 @@ class TodosApp {
     private fun displayAllTasks() {
         val taskGroups = taskManager.getAll()
 
-        for (taskGroup in taskGroups) {
-            println("-----")
-            println("Task group: $taskGroup")
-            println("-----")
-            for (task in taskGroup) {
-                println(task)
+        for (taskGroup in taskGroups.flatten()) {
+            println("----------------------------")
+            println("----------------------------")
+            println("Task group:${taskGroup.name}")
+            println("----------------------------")
+
+            taskGroup.tasks.forEach { task ->
+                println("id=${task.id}, title=${task.title}, description=${task.description}, priority=${task.priority}, done=${task.done}, createDate=${task.createDate})")
             }
+            println("")
+            println("")
         }
     }
 
@@ -235,7 +239,10 @@ class TodosApp {
             return
         }
         val tasksByGroupName: List<Task> = taskManager.getBy(groupName)
-        println(tasksByGroupName)
+
+        tasksByGroupName.forEach { task ->
+            println(task)
+        }
     }
 
     private fun getTasksByGroupNameAndPriority() {
@@ -260,7 +267,10 @@ class TodosApp {
         }
         val tasksByGroupNameAndPriority: List<Task> =
             taskManager.getBy(groupName, Priority.valueOf(priority.uppercase(Locale.getDefault())))
-        println(tasksByGroupNameAndPriority)
+
+        tasksByGroupNameAndPriority.forEach { task ->
+            println(task)
+        }
     }
 
     private fun getTasksByGroupNameAndDone() {
@@ -280,7 +290,10 @@ class TodosApp {
             return
         }
         val tasksByGroupNameAndDone: List<Task> = taskManager.getBy(groupName, done.toBoolean())
-        println(tasksByGroupNameAndDone)
+
+        tasksByGroupNameAndDone.forEach { task ->
+            println(task)
+        }
     }
 
     private fun getTasksByGroupNameAndDate() {
@@ -304,7 +317,10 @@ class TodosApp {
             return
         }
         val tasksByGroupNameAndDate: List<Task> = taskManager.getBy(groupName, parsedDate)
-        println(tasksByGroupNameAndDate)
+
+        tasksByGroupNameAndDate.forEach { task ->
+            println(task)
+        }
     }
 
     private fun exit() {
