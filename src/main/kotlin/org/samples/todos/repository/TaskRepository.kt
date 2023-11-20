@@ -9,17 +9,14 @@ import java.io.IOException
 class TaskRepository (private val taskFileName: String, private val mapper: ObjectMapper){
 
     fun load(): MutableList<TaskGroup> {
-        var taskGroups: MutableList<TaskGroup> = ArrayList()
-
         try {
-            taskGroups = mapper.readValue(File(taskFileName), mapper.typeFactory.constructCollectionType(List::class.java, TaskGroup::class.java))
+            val taskGroups = mapper.readValue(File(taskFileName), mapper.typeFactory.constructCollectionType(List::class.java, TaskGroup::class.java))
             return taskGroups
         } catch (e: IOException) {
             System.err.printf(String.format("Failed to load tasks from file: %s%n", taskFileName));
             e.printStackTrace();
+            return mutableListOf()
         }
-
-        return taskGroups;
     }
 
     fun save(taskGroups: MutableList<TaskGroup>) {

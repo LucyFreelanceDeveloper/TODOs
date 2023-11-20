@@ -54,6 +54,7 @@ class TaskManager(private val taskRepository: TaskRepository) {
     }
 
     fun deleteTask(id: UUID): Boolean {
+        //TODO: zjednodusit
         var deleted = false
         for (taskGroup in taskGroups) {
             val updatedTasks: MutableList<Task> = mutableListOf()
@@ -87,6 +88,7 @@ class TaskManager(private val taskRepository: TaskRepository) {
     }
 
     fun getBy(groupName: String): MutableList<Task>{
+        //TODO: Zjednodusit
         val tasks: MutableList<Task> = mutableListOf()
 
         for(taskGroup: TaskGroup in taskGroups){
@@ -98,6 +100,7 @@ class TaskManager(private val taskRepository: TaskRepository) {
     }
 
     fun getBy(groupName: String, priority: Priority): MutableList<Task>{
+        //TODO: Zjednodusit
         val tasks: MutableList<Task> = mutableListOf()
 
         for(taskGroup: TaskGroup in taskGroups){
@@ -113,6 +116,7 @@ class TaskManager(private val taskRepository: TaskRepository) {
     }
 
     fun getBy(groupName: String, done: Boolean): MutableList<Task>{
+        //TODO: Zjednodusit
         val tasks: MutableList<Task> = mutableListOf()
 
         for(taskGroup: TaskGroup in taskGroups){
@@ -128,6 +132,7 @@ class TaskManager(private val taskRepository: TaskRepository) {
     }
 
     fun getBy(groupName: String, olderThan: Date): MutableList<Task>{
+        //TODO: Zjednodusit
         val tasks: MutableList<Task> = mutableListOf()
 
         for(taskGroup: TaskGroup in taskGroups){

@@ -16,6 +16,7 @@ class TodosApp {
     private val objectMapper = jacksonObjectMapper()
     private val taskRepository = TaskRepository(TASK_FILE_PATH, objectMapper)
     private val taskManager = TaskManager(taskRepository)
+
     fun run() {
         while (true) {
             println("------ TODOS MENU ------")
@@ -329,8 +330,10 @@ class TodosApp {
         exitProcess(0)
     }
 
-
+    // Zrusit tuto metodu a pouzit StringUtils.isNumeric() z knihovny org.apache.commons.lang3.StringUtils
     private fun String.isNumeric(): Boolean {
         return this.matches("-?\\d+(\\.\\d+)?".toRegex())
     }
 }
+
+
