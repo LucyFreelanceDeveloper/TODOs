@@ -6,7 +6,6 @@ import org.samples.todos.model.TaskGroup
 import org.samples.todos.repository.TaskRepository
 import java.util.*
 
-
 class TaskManager(private val taskRepository: TaskRepository) {
 
     val taskGroups: MutableList<TaskGroup> = taskRepository.load()
@@ -31,11 +30,11 @@ class TaskManager(private val taskRepository: TaskRepository) {
                     existingTask.priority = task.priority
                     existingTask.done = task.done
                     existingTask.createDate = task.createDate
-                    return true;
+                    return true
                 }
             }
         }
-        return false;
+        return false
     }
 
     fun deleteTask(id: UUID): Boolean = taskGroups.any {
@@ -53,11 +52,12 @@ class TaskManager(private val taskRepository: TaskRepository) {
         } else {
             return false
         }
-    }}
+    }
 
     fun getAll(): List<TaskGroup> = taskGroups.toList()
 
-    fun getBy(groupName: String): List<Task> = taskGroups.firstOrNull() { it.name == groupName }?.tasks ?: emptyList()
+    fun getBy(groupName: String): List<Task> = taskGroups.firstOrNull { it.name == groupName }?.tasks ?: emptyList()
+
     fun getBy(groupName: String, priority: Priority): List<Task> {
         return taskGroups
             .filter { it.name == groupName }
@@ -71,7 +71,6 @@ class TaskManager(private val taskRepository: TaskRepository) {
             .flatMap { it.tasks }
             .filter { it.done == done }
     }
-
 
     fun getBy(groupName: String, olderThan: Date): List<Task> {
         return taskGroups
