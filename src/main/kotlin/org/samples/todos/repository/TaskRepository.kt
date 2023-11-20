@@ -1,17 +1,18 @@
 package org.samples.todos.repository
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import org.samples.todos.model.TaskGroup
 import java.io.File
 import java.io.IOException
+import java.nio.file.Paths
 
 
-class TaskRepository (private val taskFileName: String, private val mapper: ObjectMapper){
+class TaskRepository(private val taskFileName: String, private val mapper: ObjectMapper) {
 
     fun load(): MutableList<TaskGroup> {
         try {
-            val taskGroups = mapper.readValue(File(taskFileName), mapper.typeFactory.constructCollectionType(List::class.java, TaskGroup::class.java))
-            return taskGroups
+            return mapper.readValue(Paths.get(taskFileName).toFile())
         } catch (e: IOException) {
             System.err.printf(String.format("Failed to load tasks from file: %s%n", taskFileName));
             e.printStackTrace();

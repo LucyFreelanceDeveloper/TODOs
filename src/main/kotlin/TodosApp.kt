@@ -1,4 +1,5 @@
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import org.apache.commons.lang3.StringUtils
 import org.samples.todos.model.Priority
 import org.samples.todos.model.Task
 import org.samples.todos.repository.TaskRepository
@@ -34,7 +35,7 @@ class TodosApp {
             print("Select an option:")
             val choice = scanner.nextLine()
 
-            if (choice.isNumeric()) {
+            if (StringUtils.isNumeric(choice)) {
                 when (choice.toInt()) {
                     1 -> displayAllTasks()
                     2 -> createTask()
@@ -57,16 +58,14 @@ class TodosApp {
     private fun displayAllTasks() {
         val taskGroups = taskManager.getAll()
 
-        for (taskGroup in taskGroups.flatten()) {
-            println("----------------------------")
-            println("----------------------------")
+        for (taskGroup in taskGroups) {
+            println("============================")
             println("Task group:${taskGroup.name}")
             println("----------------------------")
 
             taskGroup.tasks.forEach { task ->
-                println("id=${task.id}, title=${task.title}, description=${task.description}, priority=${task.priority}, done=${task.done}, createDate=${task.createDate})")
+                println("id=${task.id} | title=${task.title} | description=${task.description} | priority=${task.priority} | done=${task.done} | createDate=${task.createDate})")
             }
-            println("")
             println("")
         }
     }
@@ -331,9 +330,13 @@ class TodosApp {
     }
 
     // Zrusit tuto metodu a pouzit StringUtils.isNumeric() z knihovny org.apache.commons.lang3.StringUtils
-    private fun String.isNumeric(): Boolean {
-        return this.matches("-?\\d+(\\.\\d+)?".toRegex())
-    }
+}
+
+fun main() {
+    println("Start TodosApplication")
+    val app = TodosApp()
+    app.run()
+    println("Finished TodosApplication")
 }
 
 
