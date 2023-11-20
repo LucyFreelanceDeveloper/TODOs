@@ -6,17 +6,17 @@
         "id": "c5e128d1-24bf-4a4b-974d-72cbba71f9d3",
         "title": "Task 1",
         "description": "Description for Task 1",
-        "priority": "LOW",
+        "priority": "MEDIUM",
         "done": true,
-        "createDate": "2023-08-01T08:00:00Z"
+        "createDate": "2023-11-20T07:00:00Z"
       },
       {
         "id": "f327f935-89c9-43b2-9f18-87ac967035a6",
         "title": "Task 2",
         "description": "Description for Task 2",
-        "priority": "HIGH",
+        "priority": "LOW",
         "done": false,
-        "createDate": "2023-08-02T14:15:00Z"
+        "createDate": "2023-11-20T15:15:00Z"
       }
     ]
   },
@@ -27,17 +27,17 @@
         "id": "c5e128d1-24bf-4a4b-974d-72cbba71f9d3",
         "title": "Task 1",
         "description": "Description for Task 1",
-        "priority": "LOW",
+        "priority": "MEDIUM",
         "done": true,
-        "createDate": "2023-08-01T08:00:00Z"
+        "createDate": "2023-11-20T07:00:00Z"
       },
       {
         "id": "f327f935-89c9-43b2-9f18-87ac967035a6",
         "title": "Task 2",
         "description": "Description for Task 2",
-        "priority": "HIGH",
+        "priority": "LOW",
         "done": false,
-        "createDate": "2023-08-02T14:15:00Z"
+        "createDate": "2023-11-20T15:15:00Z"
       }
     ]
   }

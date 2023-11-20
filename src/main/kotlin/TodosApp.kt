@@ -328,8 +328,6 @@ class TodosApp {
         println("Exit app. Thank you!")
         exitProcess(0)
     }
-
-    // Zrusit tuto metodu a pouzit StringUtils.isNumeric() z knihovny org.apache.commons.lang3.StringUtils
 }
 
 fun main() {

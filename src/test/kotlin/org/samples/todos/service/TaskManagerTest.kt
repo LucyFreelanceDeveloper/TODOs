@@ -21,7 +21,7 @@ class TaskManagerTest {
     private val taskRepository: TaskRepository
     private val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
 
-    constructor() {
+    init {
         sdf.timeZone = TimeZone.getTimeZone("Europe/Prague")
         taskRepository = Mockito.mock(TaskRepository::class.java)
         Mockito.`when`(taskRepository.load()).thenReturn(createSampleTasks())
@@ -34,10 +34,9 @@ class TaskManagerTest {
     @Test
     fun createTask() {
         val expectedResult: MutableList<TaskGroup> = createExpectedResult1()
-        val actualResult: List<TaskGroup>
 
-        val result = taskManager!!.createTask(createSampleTask(), "Personal")
-        actualResult = taskManager!!.getAll()
+        val result = taskManager.createTask(createSampleTask(), "Personal")
+        val actualResult: List<TaskGroup> = taskManager.getAll()
 
         assertTrue(result)
         assertEquals(expectedResult, actualResult)
@@ -73,7 +72,7 @@ class TaskManagerTest {
 
     @Test
     fun setDone() {
-        val taskId = UUID.fromString("f327f935-89c9-43b2-9f18-87ac967035a6");
+        val taskId = UUID.fromString("f327f935-89c9-43b2-9f18-87ac967035a6")
 
         taskManager.setDone(taskId)
 
