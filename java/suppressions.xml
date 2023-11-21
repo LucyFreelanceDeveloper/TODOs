@@ -1,0 +1,9 @@
+<!DOCTYPE suppressions PUBLIC "-//Checkstyle//DTD Checkstyle Suppressions 1.3//EN" "https://checkstyle.org/dtds/suppressions_1_1.dtd">
+<suppressions>
+    <suppress checks="JavadocPackageCheck" files=""/>
+    <suppress checks="LineLengthCheck" files=""/>
+    <suppress checks="JavadocVariableCheck" files=""/>
+    <suppress checks="MissingJavadocMethodCheck" files=""/>
+    <suppress checks="HiddenField" files="" />
+    <suppress checks="DesignForExtension" files="" />
+</suppressions>
