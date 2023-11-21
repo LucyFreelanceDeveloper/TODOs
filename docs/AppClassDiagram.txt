@@ -1,0 +1,85 @@
+@startuml
+
+skin rose
+
+title TODOs app - Class Diagram
+
+class TodosApplication {
+  -TaskManager taskManager
+  -Scanner scanner
+  + void run()
+  + void main()
+  - void displayAllTasks()
+  - void createTask()
+  - void updateTask()
+  - void deleteTask()
+  - void ...()
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+class Task{
+  -UUID id
+  -String title
+  -String description
+  -Priority priority
+  -Boolean done
+  -Date createDate
+  +Task()
+  +Task(UUID id, String title, ... , Date createDate)
+  +void setId(UUID id)
+  +UUID getId()
+  +void setTitle(String title)
+  +String getTtile()
+  +void setDescription(String description)
+  +String getDescpription()
+  +void setPriority(Priority priority)
+  +Priority getPriority()
+  +void setDone(Boolean done)
+  +Boolean isDone()
+  +void setDate(Date createDate)
+  +Date getDate()
+}
+
+class TaskGroup{
+    -String name
+    -List<Task> tasks
+    +TaskGroup()
+    +TaskGroup(String name, List<Task> tasks)
+    +void setName(String name)
+    +String getName()
+    +void setTasks(List<Task> tasks)
+    +List<Task> getTasks()
+}
+
+class TaskManager{
+  -TaskRepository taskRepository
+  -List<TaskGroup> taskGroups
+  +TaskManager() //load taskGroups
+  +boolean create(Task task, String groupName)
+  +boolean update(Task task)
+  +boolean delete(UUID id)
+  +List<TaskGroup> getAll()
+  +void saveTasksToFile()
+  +boolean setDone(UUID id)
+  +List<Task> getBy(String groupName)
+  +List<Task> getBy(String groupName, Priority priority)
+  +List<Task> getBy(String groupName, Boolean done)
+  +List<Task> getBy(String groupName, Date olderThan)
+
+}
+
+class TaskRepository{
+  +List<TaskGroup> load()
+  +void save(Map<String, List<TaskGroup> taskGroups)
+}
+
+TodosApplication *-- TaskManager: contains
+TaskManager *-- TaskRepository : contains
+TaskGroup *-- Task : contains
+Priority -- Task: contains
+@enduml
